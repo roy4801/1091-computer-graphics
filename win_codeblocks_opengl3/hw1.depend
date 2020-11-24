@@ -3819,3 +3819,12 @@
 1606217852 c:\users\cs2019\desktop\1091-computer-graphics\deps\glm\glm\gtc\type_ptr.inl
 	<cstring>
 
+1606217851 source:c:\users\cs2019\desktop\1091-computer-graphics\deps\glad\src\glad.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<glad/glad.h>
+	<windows.h>
+	<winapifamily.h>
+	<dlfcn.h>
+

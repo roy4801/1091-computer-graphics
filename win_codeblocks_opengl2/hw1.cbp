@@ -44,7 +44,6 @@
 		<Unit filename="../deps/glad/src/glad.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="linmath.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
