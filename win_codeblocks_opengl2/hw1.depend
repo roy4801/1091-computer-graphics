@@ -1,0 +1,151 @@
+# depslib dependency file v1.0
+1606191326 source:c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl3\deps\glad\src\glad.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<glad/glad.h>
+	<windows.h>
+	<winapifamily.h>
+	<dlfcn.h>
+
+1606191326 c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl3\deps\glad\include\glad\glad.h
+	<KHR/khrplatform.h>
+
+1606191326 c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl3\deps\glad\include\khr\khrplatform.h
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+
+1606191326 source:c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl3\main.cpp
+	<glad/glad.h>
+	<GLFW/glfw3.h>
+	"linmath.h"
+	<stdlib.h>
+	<stdio.h>
+
+1579479197 c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl3\deps\glfw\include\glfw\glfw3.h
+	<stddef.h>
+	<stdint.h>
+	<vulkan/vulkan.h>
+	<GLES/gl.h>
+	<GLES/glext.h>
+	<GLES2/gl2.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl3.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl31.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl32.h>
+	<GLES2/gl2ext.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<GL/glcorearb.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glext.h>
+	<GL/glu.h>
+
+1606191326 c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl3\linmath.h
+	<math.h>
+
+1606191326 source:c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl2\deps\glad\src\glad.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<glad/glad.h>
+	<windows.h>
+	<winapifamily.h>
+	<dlfcn.h>
+
+1606191326 c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl2\deps\glad\include\glad\glad.h
+	<KHR/khrplatform.h>
+
+1606191326 c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl2\deps\glad\include\khr\khrplatform.h
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+
+1606191326 source:c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl2\main.cpp
+	<glad/glad.h>
+	<GLFW/glfw3.h>
+	"linmath.h"
+	<stdlib.h>
+	<stdio.h>
+
+1579479197 c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl2\deps\glfw\include\glfw\glfw3.h
+	<stddef.h>
+	<stdint.h>
+	<vulkan/vulkan.h>
+	<GLES/gl.h>
+	<GLES/glext.h>
+	<GLES2/gl2.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl3.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl31.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl32.h>
+	<GLES2/gl2ext.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<GL/glcorearb.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glext.h>
+	<GL/glu.h>
+
+1606191326 c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl2\linmath.h
+	<math.h>
+
+1606217851 source:c:\users\cs2019\desktop\1091-computer-graphics\win_codeblocks_opengl2\main.cpp
+	<glad/glad.h>
+	<GLFW/glfw3.h>
+	"linmath.h"
+	<stdlib.h>
+	<stdio.h>
+
+1606217851 c:\users\cs2019\desktop\1091-computer-graphics\deps\glad\include\glad\glad.h
+	<KHR/khrplatform.h>
+
+1606217851 c:\users\cs2019\desktop\1091-computer-graphics\deps\glad\include\khr\khrplatform.h
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+
+1579479195 c:\users\cs2019\desktop\1091-computer-graphics\deps\glfw-win32\include\glfw\glfw3.h
+	<stddef.h>
+	<stdint.h>
+	<vulkan/vulkan.h>
+	<GLES/gl.h>
+	<GLES/glext.h>
+	<GLES2/gl2.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl3.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl31.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl32.h>
+	<GLES2/gl2ext.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<GL/glcorearb.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glext.h>
+	<GL/glu.h>
+
+1606217851 c:\users\cs2019\desktop\1091-computer-graphics\win_codeblocks_opengl2\linmath.h
+	<math.h>
+
+1606217851 source:c:\users\cs2019\desktop\1091-computer-graphics\deps\glad\src\glad.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<glad/glad.h>
+	<windows.h>
+	<winapifamily.h>
+	<dlfcn.h>
+
