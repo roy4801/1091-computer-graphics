@@ -17,10 +17,11 @@ static const struct
     float x, y;
     float r, g, b;
 } vertices[3] =
-    {
-        {-0.6f, -0.4f, 1.f, 0.f, 0.f},
-        {0.6f, -0.4f, 0.f, 1.f, 0.f},
-        {0.f, 0.6f, 0.f, 0.f, 1.f}};
+{
+    { -0.6f, -0.4f, 1.f, 0.f, 0.f },
+    {  0.6f, -0.4f, 0.f, 1.f, 0.f },
+    {   0.f,  0.6f, 0.f, 0.f, 1.f }
+};
 
 static const char *vertex_shader_src = R"(
 #version 410 core
@@ -49,12 +50,12 @@ void main()
     color = vec4(v_color, 1.0);
 })";
 
-static void error_callback(int error, const char *description)
+static void error_callback(int error, const char* description)
 {
     fprintf(stdout, "Error: %s\n", description);
 }
 
-static void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GLFW_TRUE);
@@ -64,16 +65,16 @@ GLFWwindow *window;
 GLuint vertex_array, vertex_buffer, vertex_shader, fragment_shader, program;
 GLint mvp_location, vpos_location, vcol_location;
 
-void getShaderError(const char *tag, GLuint shaderID)
+void getShaderError(const char* tag, GLuint shaderID)
 {
     int success;
-    char log[512];
-    glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(shaderID, 512, nullptr, log);
-        fprintf(stderr, "Shader Error: [%s] %s\n", tag, log);
-    }
+	char log[512];
+	glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
+	if(!success)
+	{
+		glGetShaderInfoLog(shaderID, 512, nullptr, log);
+		fprintf(stderr, "Shader Error: [%s] %s\n", tag, log);
+	}
 }
 
 void onInit()
@@ -103,6 +104,7 @@ void onInit()
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress); // https://stackoverflow.com/questions/58053885/having-an-issue-with-gladloadgl-im-getting-an-error-saying-it-does-not-take
     glfwSwapInterval(1);
 
+
     glGenVertexArrays(1, &vertex_array);
     glBindVertexArray(vertex_array);
     // Create VAO, VBO
@@ -126,13 +128,13 @@ void onInit()
     glLinkProgram(program);
 
     int success;
-    char log[512];
-    glGetProgramiv(program, GL_LINK_STATUS, &success);
-    if (!success)
-    {
-        glGetProgramInfoLog(program, 512, nullptr, log);
-        fprintf(stderr, "Shader Error: [Linking] %s\n", log);
-    }
+	char log[512];
+	glGetProgramiv(program, GL_LINK_STATUS, &success);
+	if(!success)
+	{
+		glGetProgramInfoLog(program, 512, nullptr, log);
+		fprintf(stderr, "Shader Error: [Linking] %s\n", log);
+	}
 
     // Get attributes locations
     mvp_location = glGetUniformLocation(program, "MVP");
