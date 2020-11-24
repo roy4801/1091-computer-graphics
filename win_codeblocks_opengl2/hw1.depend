@@ -99,10 +99,9 @@
 1606191326 c:\users\roy4801\desktop\school\1091-computer-graphics\codeblocks_opengl2\linmath.h
 	<math.h>
 
-1606217851 source:c:\users\cs2019\desktop\1091-computer-graphics\win_codeblocks_opengl2\main.cpp
+1606220870 source:c:\users\cs2019\desktop\1091-computer-graphics\win_codeblocks_opengl2\main.cpp
 	<glad/glad.h>
 	<GLFW/glfw3.h>
-	"linmath.h"
 	<stdlib.h>
 	<stdio.h>
 
