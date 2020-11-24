@@ -1,34 +1,13 @@
-//========================================================================
-// Simple GLFW example
-// Copyright (c) Camilla Löwy <elmindreda@glfw.org>
-//
-// This software is provided 'as-is', without any express or implied
-// warranty. In no event will the authors be held liable for any damages
-// arising from the use of this software.
-//
-// Permission is granted to anyone to use this software for any purpose,
-// including commercial applications, and to alter it and redistribute it
-// freely, subject to the following restrictions:
-//
-// 1. The origin of this software must not be misrepresented; you must not
-//    claim that you wrote the original software. If you use this software
-//    in a product, an acknowledgment in the product documentation would
-//    be appreciated but is not required.
-//
-// 2. Altered source versions must be plainly marked as such, and must not
-//    be misrepresented as being the original software.
-//
-// 3. This notice may not be removed or altered from any source
-//    distribution.
-//
-//========================================================================
-//! [code]
-
+/**
+ * Example of Using OpenGL 3.x Drawing a rotating triangle
+ */
 #include <glad/glad.h>
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
-#include "linmath.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -45,28 +24,30 @@ static const struct
 };
 
 static const char *vertex_shader_src = R"(
-#version 110
+#version 330 core
 
 uniform mat4 MVP;
 
-attribute vec3 vCol;
-attribute vec2 vPos;
-varying vec3 color;
+layout(location = 0) in vec2 vPos;
+layout(location = 1) in vec3 vCol;
+
+out vec3 v_color;
 
 void main()
 {
     gl_Position = MVP * vec4(vPos, 0.0, 1.0);
-    color = vCol;
+    v_color = vCol;
 })";
 
 static const char *fragment_shader_src = R"(
-#version 110
+#version 330 core
 
-varying vec3 color;
+in vec3 v_color;
+out vec4 color;
 
 void main()
 {
-    gl_FragColor = vec4(color, 1.0);
+    color = vec4(v_color, 1.0);
 })";
 
 static void error_callback(int error, const char* description)
@@ -80,12 +61,24 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-int main(void)
-{
-    GLFWwindow* window;
-    GLuint vertex_buffer, vertex_shader, fragment_shader, program;
-    GLint mvp_location, vpos_location, vcol_location;
+GLFWwindow *window;
+GLuint vertex_buffer, vertex_shader, fragment_shader, program;
+GLint mvp_location, vpos_location, vcol_location;
 
+void getShaderError(const char* tag, GLuint shaderID)
+{
+    int success;
+	char log[512];
+	glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
+	if(!success)
+	{
+		glGetShaderInfoLog(shaderID, 512, nullptr, log);
+		fprintf(stderr, "Shader Error: [%s] %s\n", tag, log);
+	}
+}
+
+void onInit()
+{
     glfwSetErrorCallback(error_callback);
 
     if (!glfwInit())
@@ -96,7 +89,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 
     // Construct Window
-    window = glfwCreateWindow(640, 480, "Example", NULL, NULL);
+    window = glfwCreateWindow(1280, 720, "Example", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -104,61 +97,92 @@ int main(void)
     }
     // Keyboard input
     glfwSetKeyCallback(window, key_callback);
-    // Load OpenGL
+    // Load OpenGL Context
     glfwMakeContextCurrent(window);
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress); // https://stackoverflow.com/questions/58053885/having-an-issue-with-gladloadgl-im-getting-an-error-saying-it-does-not-take
     glfwSwapInterval(1);
 
-    // NOTE: OpenGL error checks have been omitted for brevity
     // Create VAO, VBO
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    // Init the vertex shader
+    // Initialize the vertex shader
     vertex_shader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex_shader, 1, &vertex_shader_src, NULL);
     glCompileShader(vertex_shader);
-    // Init the fragment shader
+    getShaderError("Vertex", vertex_shader);
+    // Initialize the fragment shader
     fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragment_shader, 1, &fragment_shader_src, NULL);
     glCompileShader(fragment_shader);
+    getShaderError("Fragment", fragment_shader);
     // Compile and link the shader
     program = glCreateProgram();
     glAttachShader(program, vertex_shader);
     glAttachShader(program, fragment_shader);
     glLinkProgram(program);
+
+    int success;
+	char log[512];
+	glGetProgramiv(program, GL_LINK_STATUS, &success);
+	if(!success)
+	{
+		glGetProgramInfoLog(program, 512, nullptr, log);
+		fprintf(stderr, "Shader Error: [Linking] %s\n", log);
+	}
+
     // Get attributes locations
     mvp_location = glGetUniformLocation(program, "MVP");
     vpos_location = glGetAttribLocation(program, "vPos");
     vcol_location = glGetAttribLocation(program, "vCol");
-    //
+    // Send the vertex attributes
     glEnableVertexAttribArray(vpos_location);
     glVertexAttribPointer(vpos_location, 2, GL_FLOAT, GL_FALSE,
-                          sizeof(vertices[0]), (void*) 0);
+                          sizeof(vertices[0]), (void *)0);
     glEnableVertexAttribArray(vcol_location);
     glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE,
-                          sizeof(vertices[0]), (void*) (sizeof(float) * 2));
+                          sizeof(vertices[0]), (void *)(sizeof(float) * 2));
+}
+
+float rotateDegree = 0.f;
+void onUpdate()
+{
+    rotateDegree += 1.f;
+}
+
+float ratio;
+glm::mat4 mvpMatrix{1.f}, projectionMatrix{1.f}, modelMatrix{1.f};
+float cameraZoom = 1.f;
+void onRender()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    modelMatrix = glm::rotate(glm::mat4{1.f}, glm::radians(rotateDegree), glm::vec3(0.f, 0.f, 1.f));
+    projectionMatrix = glm::ortho(-ratio * cameraZoom, ratio * cameraZoom, -cameraZoom, cameraZoom, -1.f, 1.f);
+    mvpMatrix = projectionMatrix * modelMatrix;
+
+    glUseProgram(program);
+    glUniformMatrix4fv(mvp_location, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+}
+
+int width, height;
+void onResize()
+{
+    glfwGetFramebufferSize(window, &width, &height);
+    ratio = width / (float)height;
+    glViewport(0, 0, width, height);
+}
+
+int main(void)
+{
+    onInit();
 
     while (!glfwWindowShouldClose(window))
     {
-        float ratio;
-        int width, height;
-        mat4x4 m, p, mvp;
-
-        glfwGetFramebufferSize(window, &width, &height);
-        ratio = width / (float) height;
-
-        glViewport(0, 0, width, height);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        mat4x4_identity(m);
-        mat4x4_rotate_Z(m, m, (float) glfwGetTime());
-        mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-        mat4x4_mul(mvp, p, m);
-
-        glUseProgram(program);
-        glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        onResize();
+        onUpdate();
+        onRender();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -169,5 +193,3 @@ int main(void)
     glfwTerminate();
     exit(EXIT_SUCCESS);
 }
-
-//! [code]
