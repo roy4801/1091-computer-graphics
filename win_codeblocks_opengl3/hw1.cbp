@@ -15,6 +15,7 @@
 					<Add option="-std=c++17" />
 					<Add option="-m32" />
 					<Add option="-g" />
+					<Add directory="../deps/freetype-2.3.5-1/include/freetype2" />
 					<Add directory="../deps/glfw-win32/include" />
 					<Add directory="../deps/glm" />
 					<Add directory="../deps/glad/include" />
@@ -22,7 +23,10 @@
 				<Linker>
 					<Add option="-m32" />
 					<Add library="../deps/glfw-win32/lib-mingw/libglfw3dll.a" />
+					<Add library="freetype" />
 					<Add directory="../deps/glfw-win32/lib-mingw" />
+					<Add directory="../deps/freetype-2.3.5-1/lib" />
+					<Add directory="../deps/freetype-2.3.5-1/bin" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -41,6 +45,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../common/Shader.cpp" />
+		<Unit filename="../common/Shader.h" />
+		<Unit filename="../common/Text.cpp" />
+		<Unit filename="../common/Text.h" />
+		<Unit filename="../common/Utils.cpp" />
+		<Unit filename="../common/Utils.h" />
 		<Unit filename="../deps/glad/src/glad.c">
 			<Option compilerVar="CC" />
 		</Unit>
