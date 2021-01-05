@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+955187884 source:c:\users\roy4801\desktop\school\1091-computer-graphics\object_viewer\glm.c
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+
+955187884 c:\users\roy4801\desktop\school\1091-computer-graphics\object_viewer\glm.h
+	<GL/glut.h>
+
+1426320928 c:\users\roy4801\desktop\school\1091-computer-graphics\deps\freeglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1426320928 c:\users\roy4801\desktop\school\1091-computer-graphics\deps\freeglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+955187884 source:c:\users\roy4801\desktop\school\1091-computer-graphics\object_viewer\gltb.c
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<GL/glut.h>
+	"gltb.h"
+
+955187884 c:\users\roy4801\desktop\school\1091-computer-graphics\object_viewer\gltb.h
+
+1609829988 source:c:\users\roy4801\desktop\school\1091-computer-graphics\object_viewer\main.c
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	<stdarg.h>
+	<sys/timeb.h>
+	<GL/glut.h>
+	"gltb.h"
+	"glm.h"
+	"dirent32.h"
+
+1609829609 c:\users\roy4801\desktop\school\1091-computer-graphics\object_viewer\dirent32.h
+	<dirent.h>
+	<windows.h>
+

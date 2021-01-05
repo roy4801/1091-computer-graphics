@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="object_viewer" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/hw1" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++17" />
+					<Add option="-m32" />
+					<Add option="-g" />
+					<Add directory="../deps/freetype-2.3.5-1/include/freetype2" />
+					<Add directory="../deps/glfw-win32/include" />
+					<Add directory="../deps/glm" />
+					<Add directory="../deps/glad/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-m32" />
+					<Add library="../deps/glfw-win32/lib-mingw/libglfw3dll.a" />
+					<Add library="freetype" />
+					<Add directory="../deps/glfw-win32/lib-mingw" />
+					<Add directory="../deps/freetype-2.3.5-1/lib" />
+					<Add directory="../deps/freetype-2.3.5-1/bin" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/hw1" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-m32" />
+			<Add directory="../deps/freeglut/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-m32" />
+			<Add library="freeglut" />
+			<Add library="glu32" />
+			<Add library="opengl32" />
+			<Add library="winmm" />
+			<Add library="gdi32" />
+			<Add directory="../deps/freeglut/lib" />
+			<Add directory="../deps/freeglut/bin" />
+		</Linker>
+		<Unit filename="dirent32.h" />
+		<Unit filename="glm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="glm.h" />
+		<Unit filename="gltb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gltb.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
